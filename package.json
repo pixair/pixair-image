@@ -1,0 +1,33 @@
+{
+    "name": "pixair-image",
+    "version": "1.0.0",
+    "description": "The easiest way to use Pixair in your project",
+    "repository": "git@github.com:pixair/pixair-image.git",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "browser": "dist/index.iife.js",
+    "types": "dist/types/index.d.ts",
+    "scripts": {
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "npm run type-check -- --watch",
+        "test": "jest",
+        "build:types": "tsc --emitDeclarationOnly",
+        "build:js": "rollup -c",
+        "build": "npm run build:types && npm run build:js"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.14.8",
+        "@babel/core": "^7.15.0",
+        "@babel/plugin-proposal-class-properties": "^7.14.5",
+        "@babel/preset-env": "^7.15.0",
+        "@babel/preset-typescript": "^7.15.0",
+        "@rollup/plugin-babel": "^5.3.0",
+        "@rollup/plugin-commonjs": "^20.0.0",
+        "@rollup/plugin-node-resolve": "^13.0.4",
+        "@types/jest": "^27.0.1",
+        "jest": "^27.1.0",
+        "rollup": "^2.56.3",
+        "typescript": "^4.4.2"
+    }
+}
