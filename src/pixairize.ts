@@ -1,7 +1,7 @@
 /**
  * A set of options to customize the pixairize function to fit your needs.
  */
-export interface PixairizeOptions {
+ export interface PixairizeOptions {
 
     /**
      * The selector used to retrieve and transform images.
@@ -24,7 +24,6 @@ export const defaultOptions: PixairizeOptions = {
  * @param options PixairizeOptions Used options during the transformation.
  */
 export function pixairize(options: PixairizeOptions) {
-    console.log(options);
     document.querySelectorAll(options.selector).forEach(imageElement => {
         let srcElement = imageElement.getAttribute(options.originalAttribute);
         imageElement.removeAttribute(options.originalAttribute);

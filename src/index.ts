@@ -1,7 +1,3 @@
-import { pixairize, defaultOptions, PixairizeOptions } from './pixairize';
+import { defaultOptions, pixairize } from "./pixairize";
 
-const options: PixairizeOptions = (window as any).options;
-
-const resolvedOptions = { ...defaultOptions, ...options };
-
-pixairize(resolvedOptions);
+pixairize(defaultOptions);
