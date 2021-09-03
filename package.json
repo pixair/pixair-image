@@ -1,9 +1,8 @@
 {
     "name": "pixair-image",
     "version": "1.0.0",
-    "description": "The easiest way to use Pixair in your project",
+    "description": "This project helps you to generate a script to use Pixair API the easiest way",
     "main": "dist/index.js",
-    "types": "dist/types/index.d.ts",
     "repository": "git@github.com:pixair/pixair-image.git",
     "author": "dev@pixair.io",
     "license": "MIT",
