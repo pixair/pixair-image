@@ -7,7 +7,6 @@ export default {
     input: 'src/index.ts',
     output: {
         dir: './dist',
-        name: 'index.js',
         format: 'iife',
         sourcemap: true
     },

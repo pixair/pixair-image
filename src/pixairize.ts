@@ -1,22 +1,4 @@
-/**
- * A set of options to customize the pixairize function to fit your needs.
- */
- export interface PixairizeOptions {
-
-    /**
-     * The selector used to retrieve and transform images.
-     */
-    selector: string;
-
-    host: string;
-    originalAttribute: string;
-}
-
-export const defaultOptions: PixairizeOptions = {
-    selector: 'img',
-    host: 'https://api.pixair.io/',
-    originalAttribute: 'pix',
-};
+import { PixairizeOptions } from "./pixairize-options";
 
 /**
  * Find and transform images inside a web page.
@@ -25,11 +7,13 @@ export const defaultOptions: PixairizeOptions = {
  */
 export function pixairize(options: PixairizeOptions) {
     document.querySelectorAll(options.selector).forEach(imageElement => {
-        let srcElement = imageElement.getAttribute(options.originalAttribute);
+        const srcElement = imageElement.getAttribute(options.originalAttribute) || '';
+        var parser = document.createElement('a');
+        parser.href = srcElement;
+
+        const host = options.host.replace(/\/$/, "")
+
         imageElement.removeAttribute(options.originalAttribute);
-
-        srcElement = options.host + srcElement
-
-        imageElement.setAttribute('src', srcElement);
+        imageElement.setAttribute('src', host + parser.pathname);
     });
 }

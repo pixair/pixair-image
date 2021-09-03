@@ -1,3 +1,12 @@
-import { defaultOptions, pixairize } from "./pixairize";
+import { pixairize } from "./pixairize";
+import config from './config';
 
-pixairize(defaultOptions);
+var observer = new MutationObserver((mutations) => {
+    // TODO: optimize this part.
+    pixairize(config);
+});
+
+observer.observe(
+    document.documentElement || document.body,
+    { attributes: true, childList: true }
+);
