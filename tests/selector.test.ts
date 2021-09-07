@@ -3,9 +3,9 @@ import { pixairize } from '../src/pixairize';
 describe('The selector option', () => {
 
     const options = {
-        selector: 'img',
+        selector: 'img[data-pixair-src]',
         host: 'http://host/',
-        originalAttribute: 'data-pix'
+        originalAttribute: 'data-pixair-src'
     };
 
     it('Should not transform unselected elements.', () => {
@@ -23,24 +23,24 @@ describe('The selector option', () => {
     it('Should transform a selected element.', () => {
 
         // GIVEN
-        document.body.innerHTML = `<img data-pix="/path/to/image.png">`;
+        document.body.innerHTML = `<img class="select-me" data-pixair-src="/path/to/image.png">`;
 
         // WHEN
         pixairize({
             ...options,
-            selector: 'img',
+            selector: 'img.select-me',
         });
 
         // THEN
-        expect(document.body.innerHTML).toEqual(`<img src="http://host/path/to/image.png">`);
+        expect(document.body.innerHTML).toEqual(`<img class="select-me" src="http://host/path/to/image.png">`);
     });
 
     it('Should only transform selected elements when the selector is specific.', () => {
 
         // GIVEN
         document.body.innerHTML = `
-            <img data-pix="/path/to/image.png">
-            <img class="only-me" data-pix="/path/to/second-image.png">
+            <img data-pixair-src="/path/to/image.png">
+            <img class="only-me" data-pixair-src="/path/to/second-image.png">
         `;
 
         // WHEN
@@ -51,7 +51,7 @@ describe('The selector option', () => {
 
         // THEN
         expect(document.body.innerHTML).toEqual(`
-            <img data-pix="/path/to/image.png">
+            <img data-pixair-src="/path/to/image.png">
             <img class="only-me" src="http://host/path/to/second-image.png">
         `);
     });
