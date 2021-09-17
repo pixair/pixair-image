@@ -1,5 +1,7 @@
 # Pixair Image Script
 
+![tests status](https://github.com/pixair/pixair-image/actions/workflows/tests.yml/badge.svg)
+
 This project generate a script that helps you to transform all your images with the Pixair API.
 
 ## Installation

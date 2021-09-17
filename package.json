@@ -12,6 +12,7 @@
         "dev": "npm-run-all --parallel serve:demo build:watch",
         "serve:demo": "serve",
         "test": "jest",
+        "test:coverage": "jest --coverage=true",
         "test:watch": "jest --watch"
     },
     "devDependencies": {

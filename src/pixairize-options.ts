@@ -25,17 +25,17 @@
 
     /**
      * The original attribute where the image path belongs.
-     * You can change it for something different from 'src' to ensure that
+     * You can change it for something different from 'data-pixair-src' to ensure that
      * images to optimize are not loaded twice.
      * 
      * Ex: pix
      * 
      * ```
-     *     <img pix="/path/to/image.png" />
+     *     <img data-pixair-src="/path/to/image.png" />
      *                 |
      *                 ˅
      *     <img src="[host]/path/to/image.png" />
      * ```
      */
-    originalAttribute: string;
+    source: string;
 }

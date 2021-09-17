@@ -5,7 +5,7 @@ describe('The host option', () => {
     const options = {
         selector: 'img[data-pixair-src]',
         host: 'http://host/',
-        originalAttribute: 'data-pixair-src'
+        source: 'data-pixair-src'
     };
 
     it('Should be added before a relative path', () => {
