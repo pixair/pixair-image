@@ -7,13 +7,13 @@ import { PixairizeOptions } from "./pixairize-options";
  */
 export function pixairize(options: PixairizeOptions) {
     document.querySelectorAll(options.selector).forEach(imageElement => {
-        const srcElement = imageElement.getAttribute(options.originalAttribute) || '';
+        const srcElement = imageElement.getAttribute(options.source) || '';
         var parser = document.createElement('a');
         parser.href = srcElement;
 
         const host = options.host.replace(/\/$/, "")
 
-        imageElement.removeAttribute(options.originalAttribute);
+        imageElement.removeAttribute(options.source);
         imageElement.setAttribute('src', host + parser.pathname);
     });
 }
