@@ -6,12 +6,17 @@ import { PixairizeOptions } from "./pixairize-options";
  * @param options PixairizeOptions Used options during the transformation.
  */
 export function pixairize(options: PixairizeOptions) {
-    document.querySelectorAll(options.selector).forEach(imageElement => {
+    document.querySelectorAll<HTMLElement>(options.selector).forEach(imageElement => {
         const srcElement = imageElement.getAttribute(options.source) || '';
         var parser = document.createElement('a');
         parser.href = srcElement;
 
-        const host = options.host.replace(/\/$/, "")
+        let host = options.host.replace(/\/$/, "")
+        const customPixairHost = imageElement.dataset.pixairHost;
+        if (customPixairHost) {
+            host = customPixairHost.replace(/\/$/, "")
+            imageElement.removeAttribute('data-pixair-host')
+        }
 
         imageElement.removeAttribute(options.source);
         imageElement.setAttribute('src', host + parser.pathname);
