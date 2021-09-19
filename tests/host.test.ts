@@ -82,4 +82,19 @@ describe('The host option', () => {
         // THEN
         expect(document.body.innerHTML).toEqual(`<img src="http://my-domain/path/to/image.png">`);
     });
+
+    it('Should be overridable by the data-pixair-host attribute', () => {
+
+        // GIVEN
+        document.body.innerHTML = `<img data-pixair-src="https://original/path/to/image.png" data-pixair-host="http://other-domain">`;
+
+        // WHEN
+        pixairize({
+            ...options,
+            host: 'http://my-domain',
+        });
+
+        // THEN
+        expect(document.body.innerHTML).toEqual(`<img src="http://other-domain/path/to/image.png">`);
+    });
 });
