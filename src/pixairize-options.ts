@@ -10,18 +10,18 @@
     selector: string;
 
     /**
-     * The hostname of the serveur who will handle the image transformation.
+     * The endpoint url who will handle the image transformation.
      * 
-     * Ex: https://my-domain.pixair.io
+     * Ex: https://my-domain.pixair.io/images
      * 
      * ```
      *     <img src="/path/to/image.png" />
      *                 |
      *                 ˅
-     *     <img src="https://my-domain.pixair.io/path/to/image.png" />
+     *     <img src="https://my-domain.pixair.io/images?url=/path/to/image.png" />
      * ```
      */
-    host: string;
+    api: string;
 
     /**
      * The original attribute where the image path belongs.
@@ -34,8 +34,13 @@
      *     <img data-pixair-src="/path/to/image.png" />
      *                 |
      *                 ˅
-     *     <img src="[host]/path/to/image.png" />
+     *     <img src="[api]?url=/path/to/image.png" />
      * ```
      */
     source: string;
+
+    /**
+     * The default wanted quality on optimized images.
+     */
+    quality: number;
 }
