@@ -7,7 +7,18 @@
 
     <body>
         <h1>Démo 1</h1>
-        <img data-pixair-src="path/to/my-image.png" />
-        <img data-pixair-src="path/to/my-second-image.png" class="optimize-me" />
+        <div id="images">
+            <img data-pixair-src="path/to/my-image.png" width="50" height="50" />
+            <img data-pixair-src="path/to/my-second-image.png" class="optimize-me" width="50" height="50" />
+        </div>
+
+        <script>
+            setTimeout(() => {
+                let container = document.createElement('div')
+                container.innerHTML = `<img data-pixair-src="path/to/other-image.png" width="50" height="50" />`;
+
+                document.getElementById('images').appendChild(container);
+            }, 1000);
+        </script>
     </body>
 </html>

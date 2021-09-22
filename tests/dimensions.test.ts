@@ -4,7 +4,7 @@ describe('The width and height attributes', () => {
 
     const options = {
         selector: 'img[data-pixair-src]',
-        api: '/api',
+        project: 'example',
         source: 'data-pixair-src',
         quality: 75,
     };
@@ -18,7 +18,7 @@ describe('The width and height attributes', () => {
         pixairize(options);
 
         // THEN
-        expect(document.body.innerHTML).toEqual(`<img width="150" height="50" src="/api?url=/path/to/image.png&amp;w=150&amp;q=75">`);
+        expect(document.body.innerHTML).toEqual(`<img width="150" height="50" src="https://example.pixair.cloud/images?url=/path/to/image.png&amp;w=150&amp;q=75">`);
     });
 
     it('Should not transform an image without witdh and height', () => {

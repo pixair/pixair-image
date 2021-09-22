@@ -12,16 +12,16 @@
     /**
      * The endpoint url who will handle the image transformation.
      * 
-     * Ex: https://my-domain.pixair.io/images
+     * Ex: my-project => https://my-project.pixair.cloud/images
      * 
      * ```
      *     <img src="/path/to/image.png" />
      *                 |
      *                 ˅
-     *     <img src="https://my-domain.pixair.io/images?url=/path/to/image.png" />
+     *     <img src="https://my-project.pixair.cloud/images?url=/path/to/image.png" />
      * ```
      */
-    api: string;
+    project: string;
 
     /**
      * The original attribute where the image path belongs.

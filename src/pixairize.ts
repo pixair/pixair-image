@@ -7,30 +7,46 @@ import { PixairizeOptions } from "./pixairize-options";
  */
 export function pixairize(options: PixairizeOptions) {
     document.querySelectorAll<HTMLElement>(options.selector).forEach(imageElement => {
-        const srcElement = imageElement.getAttribute(options.source) || '';
-        const parser = document.createElement('a');
-        parser.href = srcElement;
-
         let width = imageElement.getAttribute('width');
         let height = imageElement.getAttribute('height');
 
         if (!width || !height) return;
 
-        let apiUrl = options.api;
-        const customPixairApi = imageElement.dataset.pixairApi;
-        if (customPixairApi) {
-            imageElement.removeAttribute('data-pixair-api');
-            apiUrl = customPixairApi;
-        }
+        const srcElement = extractSource(options, imageElement);
+        const apiUrl = extractApiUrl(options, imageElement);
+        const quality = extractQuality(options, imageElement);
 
-        let quality = options.quality;
-        const customQuality = imageElement.dataset.pixairQuality;
-        if (customQuality) {
-            imageElement.removeAttribute('data-pixair-quality');
-            quality = parseInt(customQuality);
-        }
-
-        imageElement.removeAttribute(options.source);
         imageElement.setAttribute('src', `${apiUrl}?url=${srcElement}&w=${width}&q=${quality}`);
     });
+}
+
+function extractSource(options: PixairizeOptions, element: HTMLElement): string {
+    const srcElement = element.getAttribute(options.source) || '';
+    element.removeAttribute(options.source);
+
+    return srcElement;
+}
+
+function extractApiUrl(options: PixairizeOptions, element: HTMLElement): string {
+    let apiUrl = buildPixairEndpoint(options.project);
+    const customPixairProject = element.dataset.pixairProject;
+    if (customPixairProject) {
+        element.removeAttribute('data-pixair-project');
+        apiUrl = buildPixairEndpoint(customPixairProject);
+    }
+    return apiUrl;
+}
+
+function extractQuality(options: PixairizeOptions, element: HTMLElement): number {
+    let quality = options.quality;
+    const customQuality = element.dataset.pixairQuality;
+    if (customQuality) {
+        element.removeAttribute('data-pixair-quality');
+        quality = parseInt(customQuality);
+    }
+    return quality;
+}
+
+function buildPixairEndpoint(project: string): string {
+    return `https://${project}.pixair.cloud/images`;
 }

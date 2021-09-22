@@ -2,7 +2,7 @@ import { PixairizeOptions } from "./pixairize-options";
 
 const config: PixairizeOptions = {
     selector: 'img[data-pixair-src]',
-    api: 'https://api.pixair.io/images',
+    project: 'example',
     source: 'data-pixair-src',
     quality: 75
 };
