@@ -1,11 +1,13 @@
 import { pixairize } from '../src/pixairize';
+import { PixairizeOptions } from '../src/pixairize-options';
 
 describe('The selector option', () => {
 
-    const options = {
+    const options: PixairizeOptions = {
         selector: 'img[data-pixair-src]',
-        host: 'http://host/',
-        source: 'data-pixair-src'
+        project: 'example',
+        source: 'data-pixair-src',
+        quality: 75,
     };
 
     it('Should not transform unselected elements.', () => {
@@ -23,7 +25,7 @@ describe('The selector option', () => {
     it('Should transform a selected element.', () => {
 
         // GIVEN
-        document.body.innerHTML = `<img class="select-me" data-pixair-src="/path/to/image.png">`;
+        document.body.innerHTML = `<img class="select-me" data-pixair-src="/path/to/image.png" width="50" height="50">`;
 
         // WHEN
         pixairize({
@@ -32,15 +34,15 @@ describe('The selector option', () => {
         });
 
         // THEN
-        expect(document.body.innerHTML).toEqual(`<img class="select-me" src="http://host/path/to/image.png">`);
+        expect(document.body.innerHTML).toEqual(`<img class="select-me" width="50" height="50" src="https://example.pixair.cloud/images?url=/path/to/image.png&amp;w=50&amp;q=75">`);
     });
 
     it('Should only transform selected elements when the selector is specific.', () => {
 
         // GIVEN
         document.body.innerHTML = `
-            <img data-pixair-src="/path/to/image.png">
-            <img class="only-me" data-pixair-src="/path/to/second-image.png">
+            <img data-pixair-src="/path/to/image.png" width="50" height="50">
+            <img class="only-me" data-pixair-src="/path/to/second-image.png" width="50" height="50">
         `;
 
         // WHEN
@@ -51,8 +53,8 @@ describe('The selector option', () => {
 
         // THEN
         expect(document.body.innerHTML).toEqual(`
-            <img data-pixair-src="/path/to/image.png">
-            <img class="only-me" src="http://host/path/to/second-image.png">
+            <img data-pixair-src="/path/to/image.png" width="50" height="50">
+            <img class="only-me" width="50" height="50" src="https://example.pixair.cloud/images?url=/path/to/second-image.png&amp;w=50&amp;q=75">
         `);
     });
 });

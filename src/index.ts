@@ -8,5 +8,5 @@ var observer = new MutationObserver((mutations) => {
 
 observer.observe(
     document.documentElement || document.body,
-    { attributes: true, childList: true }
+    { attributes: true, childList: true, subtree: true }
 );
