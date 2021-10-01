@@ -1,4 +1,4 @@
-import { PixairizeOptions } from "./pixairize-options";
+import { PixairizeOptions } from './pixairize-options';
 
 /**
  * Find and transform images inside a web page.

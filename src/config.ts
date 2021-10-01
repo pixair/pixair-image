@@ -1,4 +1,4 @@
-import { PixairizeOptions } from "./pixairize-options";
+import { PixairizeOptions } from './pixairize-options';
 
 const config: PixairizeOptions = {
     selector: 'img[data-pixair-src]',
