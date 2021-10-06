@@ -1,7 +1,7 @@
 import { pixairize } from './pixairize';
 import config from './config';
 
-var observer = new MutationObserver((mutations) => {
+const observer = new MutationObserver(mutations => {
     let needUpdate = false;
 
     mutations.forEach(mutation => {

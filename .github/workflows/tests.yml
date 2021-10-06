@@ -31,5 +31,8 @@ jobs:
       - name: Install
         run: yarn install --frozen-lockfile --silent
 
-      - name: Tests (Jest)
+      - name: Test
         run: yarn test
+
+      - name: Lint
+        run: yarn lint

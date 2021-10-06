@@ -7,8 +7,8 @@ import { PixairizeOptions } from './pixairize-options';
  */
 export function pixairize(options: PixairizeOptions) {
     document.querySelectorAll<HTMLElement>(options.selector).forEach(imageElement => {
-        let width = imageElement.getAttribute('width');
-        let height = imageElement.getAttribute('height');
+        const width = imageElement.getAttribute('width');
+        const height = imageElement.getAttribute('height');
 
         if (!width || !height) return;
 
