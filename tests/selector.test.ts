@@ -4,6 +4,7 @@ import { PixairizeOptions } from '../src/pixairize-options';
 describe('The selector option', () => {
 
     const options: PixairizeOptions = {
+        production: true,
         selector: 'img[data-pixair-src]',
         project: 'example',
         source: 'data-pixair-src',
@@ -34,7 +35,7 @@ describe('The selector option', () => {
         });
 
         // THEN
-        expect(document.body.innerHTML).toEqual(`<img class="select-me" width="50" height="50" src="https://example.pixair.cloud/images?url=/path/to/image.png&amp;w=50&amp;q=75">`);
+        expect(document.body.innerHTML).toEqual(`<img class="select-me" width="50" height="50" src="https://example.pixair.cloud/image?url=/path/to/image.png&amp;w=50&amp;q=75">`);
     });
 
     it('Should only transform selected elements when the selector is specific.', () => {
@@ -54,7 +55,7 @@ describe('The selector option', () => {
         // THEN
         expect(document.body.innerHTML).toEqual(`
             <img data-pixair-src="/path/to/image.png" width="50" height="50">
-            <img class="only-me" width="50" height="50" src="https://example.pixair.cloud/images?url=/path/to/second-image.png&amp;w=50&amp;q=75">
+            <img class="only-me" width="50" height="50" src="https://example.pixair.cloud/image?url=/path/to/second-image.png&amp;w=50&amp;q=75">
         `);
     });
 });

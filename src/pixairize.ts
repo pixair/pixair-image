@@ -28,11 +28,11 @@ function extractSource(options: PixairizeOptions, element: HTMLElement): string 
 }
 
 function extractApiUrl(options: PixairizeOptions, element: HTMLElement): string {
-    let apiUrl = buildPixairEndpoint(options.project);
+    let apiUrl = buildPixairEndpoint(options.project, options.production);
     const customPixairProject = element.dataset.pixairProject;
     if (customPixairProject) {
         element.removeAttribute('data-pixair-project');
-        apiUrl = buildPixairEndpoint(customPixairProject);
+        apiUrl = buildPixairEndpoint(customPixairProject, options.production);
     }
     return apiUrl;
 }
@@ -47,6 +47,7 @@ function extractQuality(options: PixairizeOptions, element: HTMLElement): number
     return quality;
 }
 
-function buildPixairEndpoint(project: string): string {
-    return `https://${project}.pixair.cloud/images`;
+function buildPixairEndpoint(project: string, production: boolean): string {
+    const tld = production ? 'cloud' : 'dev';
+    return `https://${project}.pixair.${tld}/image`;
 }

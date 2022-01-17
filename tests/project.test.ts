@@ -4,6 +4,7 @@ import { PixairizeOptions } from '../src/pixairize-options';
 describe('The project option', () => {
 
     const options: PixairizeOptions = {
+        production: true,
         selector: 'img[data-pixair-src]',
         project: 'example',
         source: 'data-pixair-src',
@@ -22,7 +23,7 @@ describe('The project option', () => {
         });
 
         // THEN
-        expect(document.body.innerHTML).toEqual(`<img width="50" height="50" src="https://my-project.pixair.cloud/images?url=/path/to/image.png&amp;w=50&amp;q=75">`);
+        expect(document.body.innerHTML).toEqual(`<img width="50" height="50" src="https://my-project.pixair.cloud/image?url=/path/to/image.png&amp;w=50&amp;q=75">`);
     });
 
     it('Should work with absolute source', () => {
@@ -37,7 +38,7 @@ describe('The project option', () => {
         });
 
         // THEN
-        expect(document.body.innerHTML).toEqual(`<img width="50" height="50" src="https://my-project.pixair.cloud/images?url=http://original/path/to/image.png&amp;w=50&amp;q=75">`);
+        expect(document.body.innerHTML).toEqual(`<img width="50" height="50" src="https://my-project.pixair.cloud/image?url=http://original/path/to/image.png&amp;w=50&amp;q=75">`);
     });
 
     it('Should be overridable by the data-pixair-api attribute', () => {
@@ -52,6 +53,6 @@ describe('The project option', () => {
         });
 
         // THEN
-        expect(document.body.innerHTML).toEqual(`<img width="50" height="50" src="https://second-project.pixair.cloud/images?url=/path/to/image.png&amp;w=50&amp;q=75">`);
+        expect(document.body.innerHTML).toEqual(`<img width="50" height="50" src="https://second-project.pixair.cloud/image?url=/path/to/image.png&amp;w=50&amp;q=75">`);
     });
 });
