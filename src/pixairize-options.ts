@@ -4,7 +4,7 @@
  export interface PixairizeOptions {
 
     /**
-     * Whether the script will be build for production of not.
+     * Whether the script will be built for production or not.
      */
     production: boolean;
 
