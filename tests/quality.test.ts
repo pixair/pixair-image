@@ -4,6 +4,7 @@ import { PixairizeOptions } from '../src/pixairize-options';
 describe('The quality option', () => {
 
     const options: PixairizeOptions = {
+        production: true,
         selector: 'img[data-pixair-src]',
         project: 'example',
         source: 'data-pixair-src',
@@ -22,7 +23,7 @@ describe('The quality option', () => {
         });
 
         // THEN
-        expect(document.body.innerHTML).toEqual(`<img width="50" height="50" src="https://example.pixair.cloud/images?url=/path/to/image.png&amp;w=50&amp;q=50">`);
+        expect(document.body.innerHTML).toEqual(`<img width="50" height="50" src="https://example.pixair.cloud/image?url=/path/to/image.png&amp;w=50&amp;q=50">`);
     });
 
     it('Should be overridable by the data-pixair-quality attribute', () => {
@@ -37,6 +38,6 @@ describe('The quality option', () => {
         });
 
         // THEN
-        expect(document.body.innerHTML).toEqual(`<img width="50" height="50" src="https://example.pixair.cloud/images?url=/path/to/image.png&amp;w=50&amp;q=55">`);
+        expect(document.body.innerHTML).toEqual(`<img width="50" height="50" src="https://example.pixair.cloud/image?url=/path/to/image.png&amp;w=50&amp;q=55">`);
     });
 });

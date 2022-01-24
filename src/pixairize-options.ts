@@ -4,6 +4,11 @@
  export interface PixairizeOptions {
 
     /**
+     * Whether the script will be built for production or not.
+     */
+    production: boolean;
+
+    /**
      * The selector is used to retrieve images inside the page.
      * Only images matching this selector will be transforms
      */
